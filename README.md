@@ -14,7 +14,7 @@ This tool tries to simplify that. Please follow below steps to make this usable 
 
 2. open package.json and for changes to be made please refer to the section 
 
-====Amends to proejct.json=====.
+====Amends to proejct.json=====
 
 3. Now the utility has been configured, from command prompt run "npm run build". You shall find your app ready to be relayed at destinationPath.
 
