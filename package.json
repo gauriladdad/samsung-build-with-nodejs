@@ -1,16 +1,23 @@
 {
   "name": "samsungbuild",
-  "version": "1.0.5",
+<<<<<<< HEAD
+  "version": "1.0.2",
+  "description": "This is a command line utility built using node.js for packaging of application for samsung Tv (mainly 2013/2014).",
+  "main": "updateWidget.js",
+  "dependencies": {
+    "xmlbuilder": "^2.6.4",
+    "xmldom": "^0.1.19",
+    "archiver": "^0.14.4"
+  },
+  "devDependencies": {},
+=======
+  "version": "1.0.4",
   "description": "packaging the app for publishing on samsung tv",
   "author": "gauri.gattani",
   "license": "ISC",
+>>>>>>> parent of faec8a3... 1.0.5
   "scripts": {
     "build": "node zip.js && node updateWidget.js"
-  },
-  "dependencies": {
-    "archiver": "0.14.x",
-    "xmlBuilder": "2.6.x",
-    "xmldom": "0.1.x"
   },
   "config": {
     "sourceDir": "C:/dev/tests/buildCode",
@@ -18,12 +25,12 @@
     "zipName": "samsung",
     "IPaddress": "10.1.1.189"
   },
-  "main": "updateWidget.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gauriladdad/samsung-build-with-nodejs.git"
   },
+  "author": "gauri.gattani",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/gauriladdad/samsung-build-with-nodejs/issues"
   },
