@@ -1,4 +1,3 @@
-var processXML = require("./updateWidget.js");
 var zip = require("./zip.js");
 var prompt = require('prompt');
 var fs = require("fs");

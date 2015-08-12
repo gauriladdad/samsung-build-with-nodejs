@@ -15,6 +15,9 @@
   "scripts": {
     "package-samsung-app": "node start.js"
   },
+  "bin": {
+      "package-samsung-app": "start.js"
+  }
   "config": {
     "sourceDir": "C:/dev/tests/buildCode",
     "destinationPath": "C:/dev/tests/build-destination",
