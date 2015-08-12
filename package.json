@@ -5,10 +5,11 @@
   "author": "gauri.gattani",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^0.14.4",
+    "prompt": "^0.2.14",
     "xmlbuilder": "^2.6.4",
     "xmldom": "^0.1.19",
-    "archiver": "^0.14.4",
-	"prompt": "^0.2.14"
+    "yesno": "0.0.1"
   },
   "devDependencies": {},
   "scripts": {

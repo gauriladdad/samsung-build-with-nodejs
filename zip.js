@@ -6,8 +6,12 @@ exports.createZIP = function(srcDirectory, zipFileLocation, zipName)
 {
 	var output = fs.createWriteStream(zipFileLocation + "/" + zipName + ".zip");
 	
+	output.on('error', function (err) {
+		console.log("The packaging process has been aborted due to an error with zip file creation");
+	});
+	
 	output.on('close', function() {
-		console.log('done with the zip');
+		console.log('The zip file ' + zipFileLocation + "/" + zipName + ".zip has been created!");
 	});
 
 	zipArchive.pipe(output);

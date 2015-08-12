@@ -1,21 +1,31 @@
 var fs = require("fs");
 var parser = require('xmldom').DOMParser;
 var xmlbuilder = require('xmlBuilder');
-var filePath;
-var fileSizeInBytes;
+var filePath = "";
+var fileSizeInBytes=0;
 var IPaddress;
 var zipName;
+
+
 exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress)
 {
-	filePath = destinationPath + "/" + xmlName;
-
-	var stats = fs.statSync(destinationPath + "/" + zipName + ".zip");
-	fileSizeInBytes = stats["size"];
- 
-	fs.exists(filePath, function(exists)
+	filePath = destinationPath + "/" + xmlName;	
+	try 
 	{
-		exists ? readFile() : createFile();
-	});
+		var stats = fs.statSync(destinationPath + "/" + zipName + ".zip");
+		fileSizeInBytes = stats["size"];
+		
+		fs.exists(filePath, function(exists)
+		{
+			exists ? readFile() : createFile();
+		});
+	} 
+	catch (e) 
+	{
+		console.log("The packaging process has been aborted due to an error while processing widgetlist.xml");
+	}
+ 
+	
 }
 
 function createFile()
@@ -32,7 +42,7 @@ function createFile()
 				},
 				download: 
 				function() {
-				  return IPaddress + "/" + zipName + ".zip";
+					"" + IPaddress + "/" + zipName + ".zip";
 				}
 			}
 		}	
@@ -93,7 +103,7 @@ function write(xmlDoc)
 	fs.writeFile(filePath, xmlDoc, function (err) {
 			if (err) 
 				throw err;
-			console.log('It\'s saved!');
+			console.log('The widgetlist.xml file has been saved!');
 		}
 	);
 }
