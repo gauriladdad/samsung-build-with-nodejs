@@ -1,6 +1,6 @@
 {
   "name": "samsungbuild",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is a command line utility built using node.js for packaging of application for samsung Tv (mainly 2013/2014).",
   "main": "updateWidget.js",
   "dependencies": {
