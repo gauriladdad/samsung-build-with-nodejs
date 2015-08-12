@@ -42,7 +42,7 @@ function createFile()
 				},
 				download: 
 				function() {
-					"" + IPaddress + "/" + zipName + ".zip";
+					return IPaddress + "/" + zipName + ".zip";
 				}
 			}
 		}	

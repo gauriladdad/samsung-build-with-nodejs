@@ -67,7 +67,7 @@ function getUserInput()
 		if(paramsFileExists)
 			console.log("The packaging process is updating file " + paramsFile + " to re-use in next build process!") ;
 		else
-			console.log("The packaging process is creating file " + paramsFile + "to re-use in next build process!") ;
+			console.log("The packaging process is creating file " + paramsFile + " to re-use in next build process!") ;
 		
 		//Asynchronously writes data to a file, replacing the file if it already exists. 
 		fs.writeFile(paramsFile, paramsData, function (err) {
