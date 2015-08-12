@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var zip = require("./zip.js");
 var prompt = require('prompt');
 var fs = require("fs");
