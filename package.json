@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build": "node zip.js && node updateWidget.js"
+    "build": "node start.js"
   },
   "config": {
     "sourceDir": "C:/dev/tests/buildCode",

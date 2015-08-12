@@ -1,25 +1,29 @@
 var fs = require('fs');
 var archiver = require('archiver');
-
-var output = fs.createWriteStream(process.env.npm_package_config_destinationPath + "/" + process.env.npm_package_config_zipName + ".zip");
 var zipArchive = archiver('zip');
 
-output.on('close', function() {
-    console.log('done with the zip');
-});
+exports.createZIP = function(srcDirectory, zipFileLocation, zipName)
+{
+	var output = fs.createWriteStream(zipFileLocation + "/" + zipName + ".zip");
+	
+	output.on('close', function() {
+		console.log('done with the zip');
+	});
 
-zipArchive.pipe(output);
+	zipArchive.pipe(output);
 
-zipArchive.bulk([
-    { src: [ '**/*' ], cwd: process.env.npm_package_config_sourceDir, expand: true }
-]);
+	zipArchive.bulk([
+		{ src: [ '**/*' ], cwd: srcDirectory, expand: true }
+	]);
 
-zipArchive.finalize(function(err, bytes) {
+	zipArchive.finalize(function(err, bytes) {
 
-    if(err) {
-      throw new Error("Error with archiving zip");
-    }
+		if(err) {
+		  throw new Error("Error with archiving zip");
+		}
 
-    console.log('done:', base, bytes);
+		console.log('done:', base, bytes);
 
-})
+	})
+}
+

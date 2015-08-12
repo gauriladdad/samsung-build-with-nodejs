@@ -1,16 +1,22 @@
 var fs = require("fs");
 var parser = require('xmldom').DOMParser;
 var xmlbuilder = require('xmlBuilder');
-
-var fileName = process.env.npm_package_config_destinationPath + "/" + "widgetlist.xml";
-
-var stats = fs.statSync(process.env.npm_package_config_destinationPath + "/" + process.env.npm_package_config_zipName + ".zip");
-var fileSizeInBytes = stats["size"];
- 
-fs.exists(fileName, function(exists)
+var filePath;
+var fileSizeInBytes;
+var IPaddress;
+var zipName;
+exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress)
 {
-	exists ? readFile() : createFile();
-});
+	filePath = destinationPath + "/" + xmlName;
+
+	var stats = fs.statSync(destinationPath + "/" + zipName + ".zip");
+	fileSizeInBytes = stats["size"];
+ 
+	fs.exists(filePath, function(exists)
+	{
+		exists ? readFile() : createFile();
+	});
+}
 
 function createFile()
 {
@@ -26,7 +32,7 @@ function createFile()
 				},
 				download: 
 				function() {
-				  return "http://" + process.env.npm_package_config_IPaddress + "/" + process.env.npm_package_config_zipName + ".zip";
+				  return IPaddress + "/" + zipName + ".zip";
 				}
 			}
 		}	
@@ -41,7 +47,7 @@ function createFile()
 
 function readFile() 
 {
-    fs.readFile(fileName, 'utf8', function read(err, data) 
+    fs.readFile(filePath, 'utf8', function read(err, data) 
 	{
 		if(err) 
 			return;
@@ -84,7 +90,7 @@ function updateId(widgetNode)
 function write(xmlDoc)
 {
 	//Asynchronously writes data to a file, replacing the file if it already exists. 
-	fs.writeFile(fileName, xmlDoc, function (err) {
+	fs.writeFile(filePath, xmlDoc, function (err) {
 			if (err) 
 				throw err;
 			console.log('It\'s saved!');
