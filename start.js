@@ -1,12 +1,13 @@
 var processXML = require("./updateWidget.js");
 var zip = require("./zip.js");
- 
+var prompt = require('prompt');
+
 var sourceDir ="C:/dev/dtag/bin/debug/samsung";
 var destinationPath="C:/dev/dtag/bin/debug";
 var zipName = "samsung";
 var IPaddress = "http://10.1.1.189";
 
-var prompt = require('prompt');
+
  
 	// Start the prompt 
 	prompt.start();
