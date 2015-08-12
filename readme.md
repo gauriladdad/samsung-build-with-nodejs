@@ -10,10 +10,11 @@ This tool tries to simplify that. Please follow below steps to make this usable 
 
 1. install this package. ("npm install -g samsungbuild")
 
-2. open package.json.
+2. open package.json and for changes to be made please refer to the section ====Amends to proejct.json=====.
 
-3. In the config object, update following values:
+3. Now the utility has been configured, from command prompt run "npm run build". You shall find your app ready to be relayed at destinationPath.
 
+====Amends to proejct.json=====
 sourceDir => the location where the samsung app build is located.
 
 zipName => name you would like to give your zip.
@@ -24,4 +25,6 @@ IPaddress => IP address of server from where the app would be loaded
 
 you can either create widgetlist.xml under destinationPath OR one will be created by this utility. 
 
-4. Now the utility has been configured, from command prompt run "npm run build". You shall find your app ready to be relayed at destinationPath.
+
+
+
