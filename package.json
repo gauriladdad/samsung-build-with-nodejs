@@ -2,7 +2,7 @@
   "name": "samsungbuild",
   "version": "1.0.4",
   "description": "packaging the app for publishing on samsung tv",
-  "author": "",
+  "author": "gauri.gattani",
   "license": "ISC",
   "scripts": {
     "build": "node zip.js && node updateWidget.js"
@@ -17,5 +17,15 @@
     "destinationPath": "C:/dev/tests/build-destination",
     "zipName": "samsung",
     "IPaddress": "10.1.1.189"
-  }
+  },
+  "main": "updateWidget.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauriladdad/samsung-build-with-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gauriladdad/samsung-build-with-nodejs/issues"
+  },
+  "homepage": "https://github.com/gauriladdad/samsung-build-with-nodejs#readme"
 }
