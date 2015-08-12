@@ -32,10 +32,10 @@ fs.exists(paramsFile, function(exists)
 								
 							var result = JSON.parse(data);
 							console.log("The packaging will use following inputs: ");
-							sourceDir = result.sourceDir; console.log("sourceDir: " + result.sourceDir);
-							destinationPath = result.destinationPath; console.log("destinationPath: " + result.destinationPath);
-							zipName = result.zipName; console.log("zipName: " + result.zipName);
-							IPaddress = result.IPaddress; console.log("IPaddress: " + result.IPaddress);
+							sourceDir = result.sourceDir; console.log("sourceDir: " + sourceDir);
+							destinationPath = result.destinationPath; console.log("destinationPath: " + destinationPath);
+							zipName = result.zipName; console.log("zipName: " + zipName);
+							IPaddress = result.IPaddress; console.log("IPaddress: " + IPaddress);
 							
 							package();
 						});
@@ -88,8 +88,7 @@ function getUserInput()
 
 function package()
 {
-	zip.createZIP(sourceDir, destinationPath, zipName);
-	processXML.processWidgetXML(destinationPath, "widgetlist.xml", zipName, IPaddress);		
+	zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
 }
 
 

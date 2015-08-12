@@ -3,22 +3,42 @@ var parser = require('xmldom').DOMParser;
 var xmlbuilder = require('xmlBuilder');
 var filePath = "";
 var fileSizeInBytes=0;
-var IPaddress;
-var zipName;
+var ipAddress;
+var zipFileName;
 
 
 exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress)
 {
 	filePath = destinationPath + "/" + xmlName;	
+	ipAddress = IPaddress;
+	zipFileName = zipName;
+	
 	try 
 	{
-		var stats = fs.statSync(destinationPath + "/" + zipName + ".zip");
-		fileSizeInBytes = stats["size"];
 		
-		fs.exists(filePath, function(exists)
+		
+		/* var stats = fs.statSync(destinationPath + "/" + zipName + ".zip");
+		fileSizeInBytes = stats["size"];
+		console.log("fileSizeInBytes:::" + stats["size"]); */
+		var path = destinationPath + "/" + zipName + ".zip";
+		console.log("zip file location: " + path);
+		fs.stat(path, function(err,stats) 
 		{
-			exists ? readFile() : createFile();
+			if(err) 
+			{
+				console.log("The packaging process has been aborted");
+				return ;
+			}
+		
+			fileSizeInBytes = stats["size"];
+			
+			fs.exists(filePath, function(exists)
+			{
+				exists ? readFile() : createFile();
+			});
 		});
+  
+		
 	} 
 	catch (e) 
 	{
@@ -33,20 +53,17 @@ function createFile()
 	var obj = {
 		list: {
 			widget: {
-				'@id': "VideoLoad1",
-				title: "Videoload",
-				description: "video load application",
-				compression: {
-					'@size' : fileSizeInBytes,
-					'@type' : "zip"
-				},
-				download: 
-				function() {
-					return IPaddress + "/" + zipName + ".zip";
+					'@id': "VideoLoad1",
+					title: "Videoload",
+					description: "video load application",
+					compression: {
+						'@size' : ipAddress,
+						'@type' : "zip"
+					},
+					download: (ipAddress + "/" + zipFileName + ".zip")
 				}
 			}
-		}	
-	};
+		};
 
 	var root = xmlbuilder.create('rsp', {version: '1.0', encoding: 'UTF-8'});
 	root.att('stat', 'OK');
