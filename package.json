@@ -12,18 +12,6 @@
     "yesno": "0.0.1"
   },
   "devDependencies": {},
-  /*"scripts": {
-    "package-samsung-app": "node start.js"
-  },
-  "bin": {
-    "package-samsung-app": "./start.js"
-  },
-  "config": {
-    "sourceDir": "/Users/gauri.gattani/Projects/bell-go/bin/debug/samsung",
-    "destinationPath": "/Users/gauri.gattani/Projects/samsung-build-with-nodejs/output",
-    "zipName": "samsung",
-    "IPaddress": "192.168.199.125"
-  },*/
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gauriladdad/samsung-build-with-nodejs.git"
