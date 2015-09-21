@@ -19,10 +19,10 @@
       "package-samsung-app": "./start.js"
   },
   "config": {
-    "sourceDir": "C:/dev/tests/buildCode",
-    "destinationPath": "C:/dev/tests/build-destination",
+    "sourceDir": "/Users/gauri.gattani/Projects/bell-go/bin/debug/samsung",
+    "destinationPath": "/Users/gauri.gattani/Projects/samsung-build-with-nodejs/output",
     "zipName": "samsung",
-    "IPaddress": "10.1.1.189"
+    "IPaddress": "192.168.199.125"
   },
   "repository": {
     "type": "git",

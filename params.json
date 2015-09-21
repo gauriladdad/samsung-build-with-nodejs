@@ -1,1 +1,4 @@
-{"sourceDir":"c:/dev/dtag/bin/debug/samsung","destinationPath":"c:/dev/dtag/bin/debug","zipName":"samsung-sss","IPaddress":"http://10.1.1.111"}
+{"sourceDir":"/Users/gauri.gattani/Projects/bell-go/bin/debug/samsung",
+"destinationPath":"/Users/gauri.gattani/Projects/samsung-build-with-nodejs/output",
+"zipName":"samsung",
+"IPaddress":"http://192.168.199.125"}

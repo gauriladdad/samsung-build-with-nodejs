@@ -15,10 +15,6 @@ exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress
 	
 	try 
 	{
-		
-		
-		/* var stats = fs.statSync(destinationPath + "/" + zipName + ".zip");
-		fileSizeInBytes = stats["size"];
 		console.log("fileSizeInBytes:::" + stats["size"]); */
 		var path = destinationPath + "/" + zipName + ".zip";
 		console.log("zip file location: " + path);
@@ -57,7 +53,7 @@ function createFile()
 					title: "Videoload",
 					description: "video load application",
 					compression: {
-						'@size' : ipAddress,
+						'@size' : fileSizeInBytes,
 						'@type' : "zip"
 					},
 					download: (ipAddress + "/" + zipFileName + ".zip")
