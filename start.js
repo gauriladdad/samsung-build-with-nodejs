@@ -13,42 +13,45 @@ var destinationPath;
 var zipName;
 var IPaddress;
 		
-fs.exists(paramsFile, function(exists)
-	{
-		if(exists)
+function readFile()
+{		
+	fs.exists(paramsFile, function(exists)
 		{
-			paramsFileExists = true;
-			
-			var rl = readline.createInterface({input: process.stdin, output: process.stdout});
-			rl.question("The file " + paramsFile + " is found, use for packaging?[yes/no]", function(answer) {
-					if(answer == "yes")
-					{
-						fs.readFile(paramsFile, 'utf8', function read(err, data) 
+			if(exists)
+			{
+				paramsFileExists = true;
+				
+				var rl = readline.createInterface({input: process.stdin, output: process.stdout});
+				rl.question("The file " + paramsFile + " is found, use for packaging?[yes/no]", function(answer) {
+						if(answer == "yes")
 						{
-							if(err) 
+							fs.readFile(paramsFile, 'utf8', function read(err, data) 
 							{
-								console.log("The packaging process has been aborted since there was an error while readiing " + paramsFile);
-								return;
-							}
+								if(err) 
+								{
+									console.log("The packaging process has been aborted since there was an error while readiing " + paramsFile);
+									return;
+								}
+									
+								var result = JSON.parse(data);
+								console.log("The packaging will use following inputs: ");
+								sourceDir = result.sourceDir; console.log("sourceDir: " + sourceDir);
+								destinationPath = result.destinationPath; console.log("destinationPath: " + destinationPath);
+								zipName = result.zipName; console.log("zipName: " + zipName);
+								IPaddress = result.IPaddress; console.log("IPaddress: " + IPaddress);
 								
-							var result = JSON.parse(data);
-							console.log("The packaging will use following inputs: ");
-							sourceDir = result.sourceDir; console.log("sourceDir: " + sourceDir);
-							destinationPath = result.destinationPath; console.log("destinationPath: " + destinationPath);
-							zipName = result.zipName; console.log("zipName: " + zipName);
-							IPaddress = result.IPaddress; console.log("IPaddress: " + IPaddress);
-							
-							package();
-						});
-					}
-				rl.close();
-			});
-		}
-		else
-		{
-			getUserInput();
-		}
-	});
+								package();
+							});
+						}
+					rl.close();
+				});
+			}
+			else
+			{
+				getUserInput();
+			}
+		});
+}
 
 function getUserInput()
 {
@@ -87,12 +90,13 @@ function getUserInput()
 	});
 }		
 
-function package()
-{
-	zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
+module.exports = {
+	package: function() 
+	{
+		readFile();
+		zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
+	}
 }
-
-
 
 
 	
