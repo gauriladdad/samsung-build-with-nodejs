@@ -1,12 +1,13 @@
 #! /usr/bin/env node
 
 var zip = require("./zip.js");
-var prompt = require('prompt');
 var fs = require("fs");
 var readline = require('readline');
 
 var processXML = require("./updateWidget.js");
-var paramsFile = "params.json";
+var userInput = require("./userInput.js");
+
+var paramsFile = "paramss.json";
 var paramsFileExists = false;
 
 var sourceDir;
@@ -57,47 +58,18 @@ function readFile()
 			}
 			else
 			{
-				getUserInput();
+				//need to pass a callback function so that call-back is executed after the getUserInput function 
+				//execution is complete
+				userInput.getUserInputs(receivedInput);
+
 			}
 		});
 }
 
-function getUserInput()
+function receivedInput(result)
 {
-	// Start the prompt 
-	prompt.start();
-	// Get two properties from the user: username and email 
-	prompt.get(['sourceDir', 'destinationPath', 'zipName', 'IPaddress'], function (err, result) 
-	{
-		sourceDir = result.sourceDir;
-		destinationPath = result.destinationPath;
-		zipName = result.zipName;
-		IPaddress = result.IPaddress;
-		
-		var paramObj = {"sourceDir" : sourceDir, "destinationPath" : destinationPath,"zipName" : zipName,"IPaddress" : IPaddress};
-		var paramsData = JSON.stringify(paramObj);
-		
-		if(paramsFileExists)
-			console.log("The packaging process is updating file " + paramsFile + " to re-use in next build process!") ;
-		else
-			console.log("The packaging process is creating file " + paramsFile + " to re-use in next build process!") ;
-		
-		//Asynchronously writes data to a file, replacing the file if it already exists. 
-		fs.writeFile(paramsFile, paramsData, function (err) {
-				if (err) 
-				{
-					console.log("The packaging process has been aborted since there was an error while updating " + paramsFile);
-					throw err;
-				}	
-				if(paramsFileExists)
-					console.log('The param.json file has been updated with above inputs.');
-				else
-					console.log('A param.json file has been created with above inputs.');
-				package();
-			}
-		);
-	});
-}	
+	console.log("=======user input: " + result);
+}
 
 
 	
