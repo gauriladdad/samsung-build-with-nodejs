@@ -1,7 +1,7 @@
 var fs = require("fs");
 var parser = require('xmldom').DOMParser;
 var xmlbuilder = require('xmlBuilder');
-var filePath = "";
+var widgetFilePath = "";
 var fileSizeInBytes=0;
 var ipAddress;
 var zipFileName;
@@ -9,33 +9,33 @@ var zipFileName;
 
 exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress)
 {
-	filePath = destinationPath + "/" + xmlName;	
+	widgetFilePath = destinationPath + "/" + xmlName;	
 	ipAddress = IPaddress;
 	zipFileName = zipName;
 	
+	console.log("=====process xml widget start=======");
 	try 
 	{
-		console.log("fileSizeInBytes:::" + stats["size"]); */
 		var path = destinationPath + "/" + zipName + ".zip";
 		console.log("zip file location: " + path);
 		fs.stat(path, function(err,stats) 
 		{
 			if(err) 
 			{
-				console.log("The packaging process has been aborted");
+				console.log("The packaging process has been aborted due to an error with getting zip file information");
 				return ;
 			}
-		
+
 			fileSizeInBytes = stats["size"];
-			
-			fs.exists(filePath, function(exists)
-			{
-				exists ? readFile() : createFile();
-			});
 		});
-  
 		
-	} 
+			
+		fs.exists(widgetFilePath, function(exists)
+		{
+			console.log("is widget file available: " + exists);
+			exists ? readFile() : createFile();
+		});
+	}
 	catch (e) 
 	{
 		console.log("The packaging process has been aborted due to an error while processing widgetlist.xml");
@@ -65,6 +65,7 @@ function createFile()
 	root.att('stat', 'OK');
 	var ele = root.ele(obj);
 	var xmlString = root.end({ pretty: true, indent: '  ', newline: '\n' });
+	console.log("xmlString: " + xmlString);
 	write(xmlString); 
 }
 
@@ -113,7 +114,7 @@ function updateId(widgetNode)
 function write(xmlDoc)
 {
 	//Asynchronously writes data to a file, replacing the file if it already exists. 
-	fs.writeFile(filePath, xmlDoc, function (err) {
+	fs.writeFile(widgetFilePath, xmlDoc, function (err) {
 			if (err) 
 				throw err;
 			console.log('The widgetlist.xml file has been saved!');

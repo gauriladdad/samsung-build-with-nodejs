@@ -1,10 +1,11 @@
-#!/usr/bin/env node
+#! /usr/bin/env node
 
 var zip = require("./zip.js");
 var prompt = require('prompt');
 var fs = require("fs");
 var readline = require('readline');
 
+var processXML = require("./updateWidget.js");
 var paramsFile = "params.json";
 var paramsFileExists = false;
 
@@ -12,9 +13,16 @@ var sourceDir;
 var destinationPath;
 var zipName;
 var IPaddress;
-		
+	
+
+console.log("execution began");
+
+readFile();
+
+
 function readFile()
 {		
+	console.log("readfile executed");
 	fs.exists(paramsFile, function(exists)
 		{
 			if(exists)
@@ -40,7 +48,8 @@ function readFile()
 								zipName = result.zipName; console.log("zipName: " + zipName);
 								IPaddress = result.IPaddress; console.log("IPaddress: " + IPaddress);
 								
-								package();
+								//zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
+								processXML.processWidgetXML(destinationPath, "widgetlist.xml", zipName, IPaddress);	
 							});
 						}
 					rl.close();
@@ -88,15 +97,7 @@ function getUserInput()
 			}
 		);
 	});
-}		
-
-module.exports = {
-	package: function() 
-	{
-		readFile();
-		zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
-	}
-}
+}	
 
 
 	

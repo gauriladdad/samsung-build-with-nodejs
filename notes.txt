@@ -1,0 +1,9 @@
+ 
+define following in package.json
+"bin": {
+    "package-samsung-app": "start.js"
+  }
+
+  Now in your project you can run npm link to install the script on your system. This creates a symmlink from your project so that you can run the project whilst working on it, with no need to keep reinstalling it over and over again.
+
+Once npm link has run, you should be able to run package-samsung-app
