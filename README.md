@@ -1,23 +1,16 @@
-# samsung-build-with-nodejs
 This is a command line utility built using node.js for packaging of application for samsung Tv (mainly 2013/2014).
-
 
 After you have built your application and want to load it on Samsung TV, there are certain steps to be followed : 
 1. create a zip of the build 
 2. serve widgetlist.xml 
+Now, start the server on your machine and sync the application on TV. It will be installed for you.
 
-This will enable Samsung TV to load your application. 
+###How to use ?
 
-This tool tries to simplify that. Please follow below steps to make this usable for you: 
+This utility has been published as an NPM package. Executing the command "npm install -g samsungbuild" will install this for you.
+Now run package-samsung-app and your samsung application is ready to be installed.
 
-1. install this package. ("npm install -g samsungbuild")
-
-2. open package.json and for changes to be made please refer to the section  
-
-3. Now the utility has been configured, from command prompt run "npm run build". You shall find your app ready to be relayed at destinationPath.
-(Currently this needs to be done from where this package is installed. I am working on providing a command which can be run from anywhere).
-
-====Amends to proejct.json=====
+###Amends to params.json
 
 sourceDir => the location where the samsung app build is located.
 
@@ -28,9 +21,3 @@ destinationPath => location where you want the packaged app to be loaded (perhap
 IPaddress => IP address of server from where the app would be loaded
 
 you can either create widgetlist.xml under destinationPath OR one will be created by this utility. 
-
-
-======Error for mac users=======
-http://stackoverflow.com/questions/22152162/npm-cannot-install-dependencies-attempt-to-unlock-something-which-hasnt-been
-
-may be node path is wrong: http://stackoverflow.com/questions/12594541/npm-global-install-cannot-find-module
