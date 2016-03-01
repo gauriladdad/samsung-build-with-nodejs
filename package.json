@@ -11,6 +11,13 @@
     "xmlbuilder": "*",
     "xmldom": "*"
   },
+  "devDependencies": {
+    "archiver": "*",
+    "jsonfile": "^2.2.3",
+    "readline-sync": "^1.4.1",
+    "xmlbuilder": "*",
+    "xmldom": "*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gauriladdad/samsung-build-with-nodejs.git"
