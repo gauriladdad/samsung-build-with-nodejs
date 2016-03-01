@@ -7,7 +7,7 @@ var readline = require('readline');
 var processXML = require("./updateWidget.js");
 var userInput = require("./userInput.js");
 
-var paramsFile = "paramss.json";
+var paramsFile = "params.json";
 var paramsFileExists = false;
 
 var sourceDir;
@@ -49,8 +49,7 @@ function readFile()
 								zipName = result.zipName; console.log("zipName: " + zipName);
 								IPaddress = result.IPaddress; console.log("IPaddress: " + IPaddress);
 								
-								//zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
-								processXML.processWidgetXML(destinationPath, "widgetlist.xml", zipName, IPaddress);	
+								zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
 							});
 						}
 					rl.close();
@@ -58,17 +57,10 @@ function readFile()
 			}
 			else
 			{
-				//need to pass a callback function so that call-back is executed after the getUserInput function 
-				//execution is complete
-				userInput.getUserInputs(receivedInput);
+				console.log("the parameters data file is missing");
 
 			}
 		});
-}
-
-function receivedInput(result)
-{
-	console.log("=======user input: " + result);
 }
 
 

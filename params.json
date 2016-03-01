@@ -1,6 +1,6 @@
 {
-	"sourceDir":"/Users/gauri.gattani/Projects/bell-go/bin/debug/samsung",
-	"destinationPath":"/Users/gauri.gattani/Projects/samsung-build-with-nodejs/output",
+	"sourceDir":"C:/Users/Gauri/Projects/Devices",
+	"destinationPath":"C:/Users/Gauri/Projects/SamsungBuild/output",
 	"zipName":"samsung",
 	"IPaddress":"http://192.168.199.125"
 }

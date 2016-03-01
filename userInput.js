@@ -4,12 +4,26 @@ var fs = require("fs");
 
 exports.getUserInputs = function(callBack)
 {
- 	// Start the prompt 
+	var schema = {
+    properties: {
+			zipName: { pattern: /^[0-9]+$/, message: 'please enter a valid file name', required: true },
+			IPaddress: { pattern: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/, 
+			message: 'please enter a valid IP address', 
+			required: true },
+			sourceDir: { validator: /^[0-9]+$/,
+				message: 'source dir', 
+				required: true },
+			destinationPath: { validator: /^[0-9]+$/, 
+				message: 'destination path', 
+				required: true }
+		}
+	};
+  
+	// Start the prompt 
 	prompt.start();
-
-	prompt.get(['sourceDir', 'destinationPath', 'zipName', 'IPaddress'], function (err, result) 
+	
+	prompt.get(schema, function (err, result) 
 	{
-
 		if (err) { return onErr(err); }
 
 		sourceDir = result.sourceDir;
@@ -17,7 +31,7 @@ exports.getUserInputs = function(callBack)
 		zipName = result.zipName;
 		IPaddress = result.IPaddress;
 		
-		var paramObj = {"sourceDir" : sourceDir, "destinationPath" : destinationPath,"zipName" : zipName,"IPaddress" : IPaddress};
+		var paramObj = {"sourceDir" : sourceDir, "destinationPath" : destinationPath, "zipName" : zipName, "IPaddress" : IPaddress};
 		var paramsData = JSON.stringify(paramObj);
 
 		callBack(result);
