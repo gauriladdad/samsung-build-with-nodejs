@@ -6,7 +6,8 @@
   "license": "ISC",
   "dependencies": {
     "archiver": "^0.14.4",
-    "xmlbuilder": "^2.6.4"
+    "xmlbuilder": "^2.6.4",
+    "xmldom": "^0.1.19"
   },
   "devDependencies": {},
   "repository": {

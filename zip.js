@@ -8,7 +8,7 @@ exports.createZIP = function(srcDirectory, destinationPath, zipName, IPaddress)
 	var output = fs.createWriteStream(destinationPath + "/" + zipName + ".zip");
 	
 	output.on('error', function (err) {
-		console.log("The packaging process has been aborted due to an error with zip file creation");
+		console.log("The packaging process aborted due to an error with zip file creation");
 	});
 	
 	output.on('close', function() {
@@ -29,6 +29,6 @@ exports.createZIP = function(srcDirectory, destinationPath, zipName, IPaddress)
 		}
 
 		console.log('done:', base, bytes);
-	})
+	});
 }
 

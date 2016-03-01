@@ -4,9 +4,6 @@ var zip = require("./zip.js");
 var fs = require("fs");
 var readline = require('readline');
 
-var processXML = require("./updateWidget.js");
-var userInput = require("./userInput.js");
-
 var paramsFile = "params.json";
 var paramsFileExists = false;
 
@@ -14,16 +11,8 @@ var sourceDir;
 var destinationPath;
 var zipName;
 var IPaddress;
-	
 
-console.log("execution began");
-
-readFile();
-
-
-function readFile()
-{		
-	console.log("readfile executed");
+(function(){		
 	fs.exists(paramsFile, function(exists)
 		{
 			if(exists)
@@ -57,11 +46,10 @@ function readFile()
 			}
 			else
 			{
-				console.log("the parameters data file is missing");
-
+				console.log("The parameters data file is missing");
 			}
 		});
-}
+})();
 
 
 	

@@ -2,7 +2,7 @@ var fs = require("fs");
 var parser = require('xmldom').DOMParser;
 var xmlbuilder = require('xmlBuilder');
 var widgetFilePath = "";
-var fileSizeInBytes=0;
+var zipSize=0;
 var ipAddress;
 var zipFileName;
 
@@ -18,18 +18,10 @@ exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress
 	{
 		var path = destinationPath + "/" + zipName + ".zip";
 		console.log("zip file location: " + path);
-		fs.stat(path, function(err,stats) 
-		{
-			if(err) 
-			{
-				console.log("The packaging process has been aborted due to an error with getting zip file information");
-				return ;
-			}
-
-			fileSizeInBytes = stats["size"];
-		});
 		
-			
+		var stats = fs.statSync(path);
+		zipSize = stats["size"] / 1000000.0;
+  
 		fs.exists(widgetFilePath, function(exists)
 		{
 			console.log("is widget file available: " + exists);
@@ -40,8 +32,6 @@ exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress
 	{
 		console.log("The packaging process has been aborted due to an error while processing widgetlist.xml");
 	}
- 
-	
 }
 
 function createFile()
@@ -53,7 +43,7 @@ function createFile()
 					title: "Videoload",
 					description: "video load application",
 					compression: {
-						'@size' : fileSizeInBytes,
+						'@size' : zipSize,
 						'@type' : "zip"
 					},
 					download: (ipAddress + "/" + zipFileName + ".zip")
@@ -71,7 +61,7 @@ function createFile()
 
 function readFile() 
 {
-    fs.readFile(filePath, 'utf8', function read(err, data) 
+    fs.readFile(widgetFilePath, 'utf8', function read(err, data) 
 	{
 		if(err) 
 			return;
