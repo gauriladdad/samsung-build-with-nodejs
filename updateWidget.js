@@ -11,7 +11,6 @@ exports.processWidgetXML = function()
 	{
 		fs.exists(buildModel.getWidgetFilePath(), function(exists)
 		{
-			console.log("is widget file available: " + exists);
 			exists ? readFile() : createFile();
 		});
 	}
@@ -42,7 +41,6 @@ function createFile()
 	root.att('stat', 'OK');
 	var ele = root.ele(obj);
 	var xmlString = root.end({ pretty: true, indent: '  ', newline: '\n' });
-	console.log("xmlString: " + xmlString);
 	write(xmlString); 
 }
 
