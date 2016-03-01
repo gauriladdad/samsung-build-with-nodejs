@@ -1,6 +1,6 @@
 {
   "name": "samsungbuild",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "packaging the app for publishing on samsung tv",
   "author": "gauri.gattani",
   "license": "ISC",
