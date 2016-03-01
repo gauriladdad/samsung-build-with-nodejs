@@ -1,28 +1,15 @@
 var fs = require("fs");
 var parser = require('xmldom').DOMParser;
 var xmlbuilder = require('xmlBuilder');
-var widgetFilePath = "";
-var zipSize=0;
-var ipAddress;
-var zipFileName;
 
+var buildModel = require('./buildModel.js');
 
-exports.processWidgetXML = function(destinationPath, xmlName, zipName, IPaddress)
+exports.processWidgetXML = function()
 {
-	widgetFilePath = destinationPath + "/" + xmlName;	
-	ipAddress = IPaddress;
-	zipFileName = zipName;
-	
 	console.log("=====process xml widget start=======");
 	try 
 	{
-		var path = destinationPath + "/" + zipName + ".zip";
-		console.log("zip file location: " + path);
-		
-		var stats = fs.statSync(path);
-		zipSize = stats["size"] / 1000000.0;
-  
-		fs.exists(widgetFilePath, function(exists)
+		fs.exists(buildModel.getWidgetFilePath(), function(exists)
 		{
 			console.log("is widget file available: " + exists);
 			exists ? readFile() : createFile();
@@ -43,10 +30,10 @@ function createFile()
 					title: "Videoload",
 					description: "video load application",
 					compression: {
-						'@size' : zipSize,
+						'@size' : buildModel.getZipSize(),
 						'@type' : "zip"
 					},
-					download: (ipAddress + "/" + zipFileName + ".zip")
+					download: (buildModel.getIPAddress() + "/" + buildModel.getZipName())
 				}
 			}
 		};
@@ -61,7 +48,7 @@ function createFile()
 
 function readFile() 
 {
-    fs.readFile(widgetFilePath, 'utf8', function read(err, data) 
+    fs.readFile(buildModel.getWidgetFilePath(), 'utf8', function read(err, data) 
 	{
 		if(err) 
 			return;
@@ -104,7 +91,7 @@ function updateId(widgetNode)
 function write(xmlDoc)
 {
 	//Asynchronously writes data to a file, replacing the file if it already exists. 
-	fs.writeFile(widgetFilePath, xmlDoc, function (err) {
+	fs.writeFile(buildModel.getWidgetFilePath(), xmlDoc, function (err) {
 			if (err) 
 				throw err;
 			console.log('The widgetlist.xml file has been saved!');

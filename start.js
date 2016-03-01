@@ -1,29 +1,23 @@
 #! /usr/bin/env node
 
-var zip = require("./zip.js");
 var fs = require("fs");
 var readline = require('readline');
 
-var paramsFile = "params.json";
-var paramsFileExists = false;
-
-var sourceDir;
-var destinationPath;
-var zipName;
-var IPaddress;
+var zip = require("./zip.js");
+var buildModel = require('./buildModel.js');
 
 (function(){		
-	fs.exists(paramsFile, function(exists)
+	var parmaterFile = buildModel.getParameterFile();
+	
+	fs.exists(parmaterFile, function(exists)
 		{
 			if(exists)
 			{
-				paramsFileExists = true;
-				
 				var rl = readline.createInterface({input: process.stdin, output: process.stdout});
-				rl.question("The file " + paramsFile + " is found, use for packaging?[yes/no]", function(answer) {
-						if(answer == "yes")
+				rl.question("The file " + parmaterFile + " is found, use for packaging?[y/n]", function(answer) {
+						if(answer == "y")
 						{
-							fs.readFile(paramsFile, 'utf8', function read(err, data) 
+							fs.readFile(parmaterFile, 'utf8', function read(err, data) 
 							{
 								if(err) 
 								{
@@ -32,13 +26,12 @@ var IPaddress;
 								}
 									
 								var result = JSON.parse(data);
-								console.log("The packaging will use following inputs: ");
-								sourceDir = result.sourceDir; console.log("sourceDir: " + sourceDir);
-								destinationPath = result.destinationPath; console.log("destinationPath: " + destinationPath);
-								zipName = result.zipName; console.log("zipName: " + zipName);
-								IPaddress = result.IPaddress; console.log("IPaddress: " + IPaddress);
+								buildModel.setSourceFolder(result.sourceDir);
+								buildModel.setDestinationFolder(result.destinationPath);
+								buildModel.setZipName(result.zipName); 
+								buildModel.setIPAddress(result.IPaddress);
 								
-								zip.createZIP(sourceDir, destinationPath, zipName, IPaddress);
+								zip.createZIP();
 							});
 						}
 					rl.close();

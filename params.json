@@ -1,6 +1,6 @@
 {
 	"sourceDir":"C:/Users/Gauri/Projects/Devices",
-	"destinationPath":"C:/Users/Gauri/Projects/SamsungBuild/output",
+	"destinationPath":"C:/Users/Gauri/Projects/SamsungBuild",
 	"zipName":"samsung",
 	"IPaddress":"http://192.168.199.125"
 }

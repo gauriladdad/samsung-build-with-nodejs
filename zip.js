@@ -2,24 +2,25 @@ var fs = require('fs');
 var archiver = require('archiver');
 var zipArchive = archiver('zip');
 var processXML = require("./updateWidget.js");
+var buildModel = require('./buildModel.js');
 
-exports.createZIP = function(srcDirectory, destinationPath, zipName, IPaddress)
+exports.createZIP = function()
 {
-	var output = fs.createWriteStream(destinationPath + "/" + zipName + ".zip");
+	var output = fs.createWriteStream(buildModel.getDestinationFolder() + "/" + buildModel.getZipName());
 	
 	output.on('error', function (err) {
 		console.log("The packaging process aborted due to an error with zip file creation");
 	});
 	
 	output.on('close', function() {
-		console.log('The zip file ' + destinationPath + "/" + zipName + ".zip has been created!");
-		processXML.processWidgetXML(destinationPath, "widgetlist.xml", zipName, IPaddress);		
+		console.log('The zip file ' + buildModel.getDestinationFolder() + "/" + buildModel.getZipName() + "has been created!");
+		processXML.processWidgetXML();		
 	});
 
 	zipArchive.pipe(output);
 
 	zipArchive.bulk([
-		{ src: [ '**/*' ], cwd: srcDirectory, expand: true }
+		{ src: [ '**/*' ], cwd: buildModel.getSourceFolder(), expand: true }
 	]);
 
 	zipArchive.finalize(function(err, bytes) {
