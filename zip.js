@@ -6,14 +6,14 @@ var buildModel = require('./buildModel.js');
 
 exports.createZIP = function()
 {
-	var output = fs.createWriteStream(buildModel.getDestinationFolder() + "/" + buildModel.getZipName());
+	var output = fs.createWriteStream(buildModel.getZipFullPath());
 	
 	output.on('error', function (err) {
 		console.log("The packaging process aborted due to an error with zip file creation");
 	});
 	
 	output.on('close', function() {
-		console.log('The zip file ' + buildModel.getDestinationFolder() + "/" + buildModel.getZipName() + "has been created!");
+		console.log('The zip file ' + buildModel.getZipFullPath() + " has been created!");
 		processXML.processWidgetXML();		
 	});
 

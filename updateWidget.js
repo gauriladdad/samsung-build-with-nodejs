@@ -21,7 +21,7 @@ exports.processWidgetXML = function()
 }
 
 function createFile()
-{
+{	
 	var obj = {
 		list: {
 			widget: {

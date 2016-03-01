@@ -4,12 +4,13 @@
   "description": "packaging the app for publishing on samsung tv",
   "author": "gauri.gattani",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "archiver": "*",
+    "jsonfile": "^2.2.3",
+    "readline-sync": "^1.4.1",
     "xmlbuilder": "*",
     "xmldom": "*"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gauriladdad/samsung-build-with-nodejs.git"

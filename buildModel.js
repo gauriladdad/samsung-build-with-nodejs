@@ -1,18 +1,13 @@
 var fs = require("fs");
 
 var sourceFolder;
-var destinationFolder;
 var zipName;
+var zipPath;
 var ipAddress;
 
-exports.getParameterFile = function()
+exports.setSourceFolder = function(folderName)
 {
-	return "params.json";
-}
-
-exports.setSourceFolder = function(path)
-{
-	sourceFolder = path;
+	sourceFolder = folderName;
 }
 
 exports.getSourceFolder = function()
@@ -20,24 +15,23 @@ exports.getSourceFolder = function()
 	return sourceFolder;
 }
 
-exports.setDestinationFolder = function(path)
-{
-	destinationFolder = path;
-}
-
-exports.getDestinationFolder = function()
-{
-	return destinationFolder;
-}
-
 exports.setZipName = function(zipFileName)
 {
-	zipName = zipFileName + ".zip";
+	if ( typeof zipFileName !== 'undefined' && zipFileName )
+		zipName = zipFileName;
+	else
+		zipName = "samsung";
+	zipPath = process.cwd() + "/" + zipName + ".zip";
 }
 
 exports.getZipName = function()
 {
 	return zipName;
+}
+
+exports.getZipFullPath = function()
+{
+	return zipPath;
 }
 
 exports.setIPAddress = function(address)
@@ -47,17 +41,35 @@ exports.setIPAddress = function(address)
 
 exports.getIPAddress = function()
 {
-	return ipAddress;
+	return "http://" + ipAddress;
+}
+
+exports.getParameterFile = function()
+{
+	return process.cwd() + "/params.json";
 }
 
 exports.getZipSize = function()
 {
-	var stats = fs.statSync(destinationFolder + "/" + zipName);
+	var stats = fs.statSync(zipPath);
 	return (stats["size"] / 1000000.0);
-	
 }
 
 exports.getWidgetFilePath = function()
 {
-	return destinationFolder + "/widgetlist.xml";
+	return (process.cwd() + "/widgetlist.xml");
+}
+
+exports.getBuildData = function() {
+	return {
+		"sourceFolder": sourceFolder,
+		"zipName": zipName,
+		"ipAddress" : ipAddress
+	}
+}
+
+exports.printData = function() {
+	console.log("Source folder: " + sourceFolder);
+	console.log("ZIP file name: " + zipName);
+	console.log("IP address: " + ipAddress);
 }
