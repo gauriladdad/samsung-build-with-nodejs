@@ -7,12 +7,12 @@ After you have built your application and want to load it on Samsung TV, there a
 2. serve widgetlist.xml. (During development of the application, we need to make sure that  )
 Now, start the server on your machine and sync the application on TV. It will be installed for you.
 
-###How to use ?
+## How to use ?
 
 This utility has been published as an NPM package. Executing the command "npm install -g samsungbuild" will install this for you.
 Now run package-samsung-app and your samsung application is ready to be installed.
 
-###Amends to params.json
+## Setup required in params.json
 
 sourceDir => the location where the samsung app build is located.
 
@@ -24,7 +24,7 @@ IPaddress => IP address of server from where the app would be loaded
 
 you can either create widgetlist.xml under destinationPath OR one will be created by this utility. 
 
-###How Does this simplify and save the time?
+## How Does this simplify and save the time?
 
 I believe if same application needs to be installed multiple times with minor modifications : 
 
@@ -45,7 +45,6 @@ I believe if same application needs to be installed multiple times with minor mo
 
 -- The compression size is important to be specified, size of 0 would lead to application not being installed.
 
-3. If there are multiple builds being used (e.g. an old application version using different set of libraries and currently in bug fix cycle, alongside current one),
-all that is needed to be done is to give the -build folder path- to utility and rest would be handled for you.
+3. If there are multiple builds being used (e.g. an old application version using different set of libraries and currently in bug fix cycle, alongside current one), all that is required is to give the -build folder path- to utility and rest will work.
 
 4. Once installed, this utility can be used for all the samsung applications you are building. 	
