@@ -39,10 +39,9 @@ I believe if same application needs to be installed multiple times with minor mo
       <download>http://1.2.2./samsung</download>
     </widget>
 	
--- This file is a must for Samsung TV to recognize the application to be installed. The utility create the same for you.
+-- This file is a must for Samsung TV to recognize the application to be installed. The utility creates the same for you.
 	
--- While installing the same zip subsequently, samsung TV sometimes fails to recognise it as new application and serves the old build.
-Tp avoid this problem, the id of the widget needs to be changed and must be unique each time. 
+-- While installing the same zip subsequently, samsung TV sometimes fails to recognise it as new application and serves the old build. To avoid this problem, the id of the widget needs to be changed and must be unique each time. 
 
 -- The compression size is important to be specified, size of 0 would lead to application not being installed.
 
